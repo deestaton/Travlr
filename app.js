@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/travel', travelRouter);
+app.use('/travel', travelRouter); // Do not type /travel.hbs in the browser; leave as /travel
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
