@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const host = process.env.DB_HOST || '127.0.0.1'
+const host = process.env.DB_HOST || '127.0.0.1';
 const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
@@ -11,7 +11,7 @@ const connect = () => {
         useNewUrlParser: true,
         useCreateIndex: true
     }), 1000);
-}
+};
 
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
@@ -25,9 +25,15 @@ mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
 
-// if (process.platform === 'win32') {
-//     //...
-// }
+if (process.platform === 'win32') {
+    const rl = readLine.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    rl.on ('SIGINT', () => {
+        process.emit("SIGINT");
+    });
+}
 
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close( () => {
