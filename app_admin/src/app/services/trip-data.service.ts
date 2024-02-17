@@ -8,16 +8,27 @@ import { Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TripDataService {
 
   constructor(private http: HttpClient) { }
 
   private apiBaseUrl = 'http://localhost:3000/api/';
+  private tripUrl = `${this.apiBaseUrl}trips/`;
+
+  public addTrip(formData: Trip): Observable<Trip> {
+    console.log('Inside TripDataService#addTrip');
+    return this.http
+      .post<Trip>(this.tripUrl, formData) // pass form data in request body
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
 
   public getTrips(): Observable<Trip[]> {
     console.log('Inside TripDataService#getTrips');
     return this.http
-      .get<Trip[]>(`${this.apiBaseUrl}trips`).pipe(
+      .get<Trip[]>(`${this.tripUrl}`).pipe(
         catchError(this.handleError)
       );
   }

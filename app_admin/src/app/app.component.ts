@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TripListingComponent } from './trip-listing/trip-listing.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { TripDataService } from './services/trip-data.service';
-
+import { AddTripComponent } from './add-trip/add-trip.component';
 
 
 @Component({
@@ -15,7 +15,8 @@ import { TripDataService } from './services/trip-data.service';
     RouterOutlet, 
     TripListingComponent, 
     TripCardComponent,
-    HttpClient
+    AddTripComponent,
+    HttpClientModule,
   ],
   providers: [
     TripDataService,

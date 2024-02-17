@@ -36,22 +36,34 @@
 // }
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Trip } from '../models/trip';
 import { TripDataService } from '../services/trip-data.service';
 import { catchError, throwError } from 'rxjs';
+import { TripCardComponent } from '../trip-card/trip-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-trip-listing',
   standalone: true,
   templateUrl: './trip-listing.component.html',
   styleUrl: './trip-listing.component.css',
+  imports: [TripCardComponent, CommonModule]
 })
 export class TripListingComponent {
   trips: Trip[] | undefined;
   message = 'Searching for trips';
   ngOnDestroy: (() => void) | undefined;
 
-  constructor(private tripDataService: TripDataService) {}
+  constructor(
+    private tripDataService: TripDataService,
+    private router: Router
+    ) {}
+
+  addTrip(): void {
+    console.log('Inside TripListingComponent#addTrip');
+    this.router.navigate(['add-trip']);
+  }
 
   async ngOnInit() {
     try {
