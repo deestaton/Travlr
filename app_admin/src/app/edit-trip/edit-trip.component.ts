@@ -5,15 +5,15 @@ import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angula
 import { TripDataService } from '../services/trip-data.service';
 
 @Component({
-  selector: 'app-add-trip',
+  selector: 'app-edit-trip',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-trip.component.html',
-  styleUrl: './add-trip.component.css',
+  templateUrl: './edit-trip.component.html',
+  styleUrl: './edit-trip.component.css'
 })
+export class EditTripComponent {
 
-export class AddTripComponent implements OnInit {
-  addForm: FormGroup;
+  editForm: FormGroup;
   submitted = false;
 
   constructor(
@@ -23,7 +23,16 @@ export class AddTripComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
+    // retrieve stashed tripId
+    let tripCode = localStorage.getItem("tripCode");
+    if (!tripCode) {
+      alert("Something is wrong; I couldn't find where I stashed the tripCode!");
+      this.router.navigate(['']);
+      return;
+    }
+
+    // initialize form
+    this.editForm = this.formBuilder.group({
       _id: [],
       code: ['', Validators.required],
       name: ['', Validators.required],
@@ -33,21 +42,26 @@ export class AddTripComponent implements OnInit {
       perPerson: ['', Validators.required],
       image: ['', Validators.required],
       description: ['', Validators.required],
-    });
+    })
+
+    this.tripService.getTrip(tripCode)
+      .subscribe((data: any) => {
+        console.log(data);
+        // Don't use editForm.setValue() as it will throw console error
+        this.editForm.patchValue(data);
+      });
   }
 
   onSubmit() {
     this.submitted = true;
-    if(this.addForm.valid) {
-      this.tripService.addTrip(this.addForm.value)
-        .subscribe((data) => {
+    if(this.editForm.valid) {
+      this.tripService.updateTrip(this.editForm.value)
+        .subscribe((data: any) => {
           console.log(data);
           this.router.navigate(['']);
         });
     };
   }
     // Get the form short name to access the form fields
-  get f() { return this.addForm.controls; }
+  get f() { return this.editForm.controls; }
 }
-
-

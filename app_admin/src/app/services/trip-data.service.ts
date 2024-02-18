@@ -1,20 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Trip } from '../models/trip';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
+// @Injectable()
 export class TripDataService {
-
-  constructor(private http: HttpClient) { }
 
   private apiBaseUrl = 'http://localhost:3000/api/';
   private tripUrl = `${this.apiBaseUrl}trips/`;
+
+  constructor(private http: HttpClient) { }
 
   public addTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#addTrip');
@@ -25,11 +25,31 @@ export class TripDataService {
       );
   }
 
+  public getTrip(tripCode: string): Observable<Trip[]> {
+    console.log('Inside TripDataService#getTrip(tripCode)');
+    return this.http
+      .get<Trip[]>(this.tripUrl + tripCode)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
+
   public getTrips(): Observable<Trip[]> {
     console.log('Inside TripDataService#getTrips');
     return this.http
-      .get<Trip[]>(`${this.tripUrl}`).pipe(
-        catchError(this.handleError)
+      .get<Trip[]>(this.tripUrl)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
+
+  public updateTrip(formData: Trip): Observable<Trip> {
+    console.log('Inside TripDataService#updateTrip');
+    console.log(formData);
+    return this.http
+      .put<Trip>(this.tripUrl + formData.code, formData)
+      .pipe(
+        catchError(error => this.handleError(error))
       );
   }
 

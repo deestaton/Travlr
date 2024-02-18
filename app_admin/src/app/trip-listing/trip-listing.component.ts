@@ -35,25 +35,27 @@
 //   }
 // }
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Trip } from '../models/trip';
+// import { trips } from '../data/trips';
 import { TripDataService } from '../services/trip-data.service';
+import { TripCardComponent } from "../trip-card/trip-card.component";
 import { catchError, throwError } from 'rxjs';
-import { TripCardComponent } from '../trip-card/trip-card.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-trip-listing',
-  standalone: true,
-  templateUrl: './trip-listing.component.html',
-  styleUrl: './trip-listing.component.css',
-  imports: [TripCardComponent, CommonModule]
+    selector: 'app-trip-listing',
+    standalone: true,
+    templateUrl: './trip-listing.component.html',
+    styleUrl: './trip-listing.component.css',
+    imports: [TripCardComponent, CommonModule],
+    providers: [TripDataService]
 })
-export class TripListingComponent {
+export class TripListingComponent implements OnInit {
   trips: Trip[] | undefined;
   message = 'Searching for trips';
-  ngOnDestroy: (() => void) | undefined;
+  // ngOnDestroy: (() => void) | undefined;
 
   constructor(
     private tripDataService: TripDataService,
@@ -65,25 +67,15 @@ export class TripListingComponent {
     this.router.navigate(['add-trip']);
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     try {
-      const foundTrips = await this.tripDataService.getTrips()
-        .pipe(
-          catchError(error => {
-            console.error('Error fetching trips:', error);
-            this.message = 'An error occurred. Please try again.';
-            return throwError(() => new Error('Error fetching trips'));
-          })
-        )
-        .subscribe(trips => {
-          this.trips = trips;
-          this.message = trips.length > 0 ? '' : 'No trips found';
-        });
-
-        // Unsubscribe when the component is destroyed to avoid memory leaks
-        this.ngOnDestroy = () => foundTrips.unsubscribe();
+      this.tripDataService.getTrips().subscribe(trips => {
+        this.trips = trips;
+        this.message = this.trips.length > 0 ? '' : 'Mo trips found';
+      });
     } catch (error) {
       console.log('An error occurred: ', error);
+      this.message = 'An error occurred. Please try again.';
     }
   }
 }
