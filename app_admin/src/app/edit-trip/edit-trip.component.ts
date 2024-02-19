@@ -45,18 +45,18 @@ export class EditTripComponent {
     })
 
     this.tripService.getTrip(tripCode)
-      .subscribe((data: any) => {
-        console.log(data);
-        // Don't use editForm.setValue() as it will throw console error
-        this.editForm.patchValue(data);
-      });
+    .subscribe(data => {
+      console.log(data);
+      // Don't use editForm.setValue() as it will throw console error
+      this.editForm.patchValue(data);
+    });
   }
 
   onSubmit() {
     this.submitted = true;
     if(this.editForm.valid) {
       this.tripService.updateTrip(this.editForm.value)
-        .subscribe((data: any) => {
+        .subscribe((data) => {
           console.log(data);
           this.router.navigate(['']);
         });
@@ -65,3 +65,7 @@ export class EditTripComponent {
     // Get the form short name to access the form fields
   get f() { return this.editForm.controls; }
 }
+function ngAfterViewInit() {
+  throw new Error('Function not implemented.');
+}
+

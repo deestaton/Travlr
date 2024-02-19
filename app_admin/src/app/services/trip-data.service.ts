@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Trip } from '../models/trip';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 
-// @Injectable()
+
 export class TripDataService {
 
   private apiBaseUrl = 'http://localhost:3000/api/';
@@ -25,10 +26,10 @@ export class TripDataService {
       );
   }
 
-  public getTrip(tripCode: string): Observable<Trip[]> {
+  public getTrip(tripCode: string): Observable<Trip> {
     console.log('Inside TripDataService#getTrip(tripCode)');
     return this.http
-      .get<Trip[]>(this.tripUrl + tripCode)
+      .get<Trip>(this.tripUrl + tripCode)
       .pipe(
         catchError(error => this.handleError(error))
       );

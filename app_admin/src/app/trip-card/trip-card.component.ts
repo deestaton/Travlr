@@ -20,6 +20,8 @@ export class TripCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /* stash the trip code in browser's local storage for the edit
+  component to retrieve later */
   public editTrip(trip: Trip): void {
     localStorage.removeItem("tripCode");
     localStorage.setItem("tripCode", trip.code);
