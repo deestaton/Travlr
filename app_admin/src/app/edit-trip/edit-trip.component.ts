@@ -11,9 +11,18 @@ import { TripDataService } from '../services/trip-data.service';
   templateUrl: './edit-trip.component.html',
   styleUrl: './edit-trip.component.css'
 })
-export class EditTripComponent {
-
-  editForm: FormGroup;
+export class EditTripComponent implements OnInit {
+  editForm: FormGroup = new FormGroup({
+    _id: new FormGroup([]),
+    code: new FormGroup([]),
+    name: new FormGroup([]),
+    length: new FormGroup([]),
+    start: new FormGroup([]),
+    resort: new FormGroup([]),
+    perPerson: new FormGroup([]),
+    image: new FormGroup([]),
+    description: new FormGroup([]),
+  });
   submitted = false;
 
   constructor(
@@ -34,7 +43,7 @@ export class EditTripComponent {
     // initialize form
     this.editForm = this.formBuilder.group({
       _id: [],
-      code: ['', Validators.required],
+      code: [tripCode, Validators.required],
       name: ['', Validators.required],
       length: ['', Validators.required],
       start: ['', Validators.required],
@@ -64,8 +73,5 @@ export class EditTripComponent {
   }
     // Get the form short name to access the form fields
   get f() { return this.editForm.controls; }
-}
-function ngAfterViewInit() {
-  throw new Error('Function not implemented.');
 }
 

@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
     providers: [TripDataService]
 })
 export class TripListingComponent implements OnInit {
+
   trips: Trip[];
   message = 'Searching for trips';
 
@@ -22,9 +23,14 @@ export class TripListingComponent implements OnInit {
     private router: Router
     ) {}
 
-  addTrip(): void {
+  protected addTrip(): void {
     console.log('Inside TripListingComponent#addTrip');
     this.router.navigate(['add-trip']);
+  }
+
+  deleteTrip(): void {
+    console.log('Inside TripListingComponent#deleteTrip');
+    this.router.navigate(['delete-trip']);
   }
 
   ngOnInit() {

@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { Trip } from '../models/trip';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 
-
+@Injectable()
 export class TripDataService {
 
   private apiBaseUrl = 'http://localhost:3000/api/';
@@ -49,6 +48,16 @@ export class TripDataService {
     console.log(formData);
     return this.http
       .put<Trip>(this.tripUrl + formData.code, formData)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
+
+  public deleteTrip(formData: Trip): Observable<any> {
+    console.log('Inside TripDataService#deleteTrip');
+    console.log(formData);
+    return this.http
+      .delete<Trip>(this.tripUrl + formData.code)
       .pipe(
         catchError(error => this.handleError(error))
       );
