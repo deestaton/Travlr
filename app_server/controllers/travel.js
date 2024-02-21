@@ -1,10 +1,10 @@
 const request = require('request');
 const apiOptions = {
-    server: 'http://localhost:3000'
+    server: 'http://localhost:3000',
 };
 
 // GET travel list view
-const travel = (req, res) => {
+const travelList = (req, res) => {
     const path = '/api/trips';
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -20,8 +20,7 @@ const travel = (req, res) => {
                 console.error(err);
             }
             renderTravelList(req, res, body);
-        }
-    );
+        });
 };
 
 // Internal method to render the travel list
@@ -40,11 +39,10 @@ const renderTravelList = (req, res, responseBody) => {
         {
             title: pageTitle,
             trips: responseBody,
-            message
+            message,
         });
-}
+};
 
 module.exports = {
-    travel,
-    renderTravelList
+    travelList
 };

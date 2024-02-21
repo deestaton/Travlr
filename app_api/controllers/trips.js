@@ -43,6 +43,7 @@ const tripsFindByCode = async (req, res) => {
         });
 };
 
+// POST
 const tripsAddTrip = async (req, res) => {
     model
         .create({
@@ -68,10 +69,11 @@ const tripsAddTrip = async (req, res) => {
         });
 };
 
+// PUT
 const tripsUpdateTrip = async (req, res) => {
     console.log(req.body);
     model
-        .findOneAndUpdate({ 'code': req.params.tripCode }, {
+        .findOneAndRemove({ 'code': req.params.tripCode }, {
             code: req.body.code,
             name: req.body.name,
             length: req.body.length,
@@ -104,9 +106,47 @@ const tripsUpdateTrip = async (req, res) => {
         });
 }
 
+// Delete
+const tripsDeleteTrip = async (req, res) => {
+    console.log(req.params.tripCode);
+    model
+        .findOneAndRemove({ code: req.params.tripCode }, {
+            code: req.body.code,
+            name: req.body.name,
+            length: req.body.length,
+            start: req.body.start,
+            resort: req.body.resort,
+            perPerson: req.body.perPerson,
+            image: req.body.image,
+            description: req.body.description
+        })
+        .then(trip => {
+            if (!trip) {
+                return res
+                    .status(404)
+                    .send({
+                        message: "Trip not found with code " + req.params.tripCode
+                    });
+            }
+            res.send(trip);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res
+                    .status(404)
+                    .send({
+                        message: "Trip not found with code " + req.params.tripCode
+                    });
+            }
+            return res
+                .status(500) // server error
+                .json(err);
+        });
+}
+
 module.exports = {
     tripsList,
     tripsFindByCode,
     tripsAddTrip,
-    tripsUpdateTrip
+    tripsUpdateTrip,
+    tripsDeleteTrip
 };
