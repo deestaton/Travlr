@@ -11,7 +11,7 @@ import { TripDataService } from '../services/trip-data.service';
   templateUrl: './edit-trip.component.html',
   styleUrl: './edit-trip.component.css'
 })
-export class EditTripComponent {
+export class EditTripComponent implements OnInit {
   editForm: FormGroup = new FormGroup({
     _id: new FormGroup([]),
     code: new FormGroup([]),
