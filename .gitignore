@@ -68,6 +68,10 @@ ScaffoldingReadMe.txt
 # StyleCop
 StyleCopReport.xml
 
+# dotenv environment variables file
+.env
+.env.test
+
 # Files built by Visual Studio
 *_i.c
 *_p.c
