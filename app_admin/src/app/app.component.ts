@@ -7,6 +7,8 @@ import { TripCardComponent } from './trip-card/trip-card.component';
 import { TripDataService } from './services/trip-data.service';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -19,9 +21,12 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
     AddTripComponent,
     EditTripComponent,
     HttpClientModule,
+    NavBarComponent,
+    
   ],
   providers: [
     TripDataService,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
