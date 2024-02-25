@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 
 '../services/authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void { }
 
-  public isLoggedin(): boolean {
+  public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 

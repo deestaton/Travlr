@@ -8,7 +8,7 @@ import { TripDataService } from './services/trip-data.service';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     EditTripComponent,
     HttpClientModule,
     NavBarComponent,
-    
+    ReactiveFormsModule,
   ],
   providers: [
     TripDataService,

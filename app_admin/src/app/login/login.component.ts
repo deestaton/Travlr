@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from 
 '../services/authentication.service';
 import { User } from '../models/user';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   private doLogin(): void {
     this.authenticationService.login(this.credentials)
-    .subscribe(() => this.router.navigateByUrl('#')),
-    (error: any) => this.formError = error.message);
+    .subscribe(() => this.router.navigateByUrl('')),
+    (error: any) => this.formError = error.message;
   }
 }

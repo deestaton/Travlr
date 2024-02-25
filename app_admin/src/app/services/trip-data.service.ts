@@ -17,8 +17,10 @@ export class TripDataService {
   private apiBaseUrl = 'http://localhost:3000/api/';
   private tripUrl = `${this.apiBaseUrl}trips/`;
 
-  constructor(private http: HttpClient,
-    @Inject(BROWSER_STORAGE) private storage: Storage) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(BROWSER_STORAGE) private storage: Storage
+  ) { }
 
   public addTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#addTrip');
@@ -75,7 +77,7 @@ export class TripDataService {
       );
   }
 
-  private handleError(error: any): Observable<never> {
+  private handleError(error: any): Observable<any> {
     console.log('Something has gone wrong', error); // for demo purposes only
     return throwError(() => new Error('Please try again'));
   }

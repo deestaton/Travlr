@@ -3,7 +3,7 @@ import { BROWSER_STORAGE } from '../storage';
 import { User } from '../models/user';
 import { AuthResponse } from '../models/authresponse';
 import { TripDataService } from './trip-data.service';
-import { Observable, catchError, map, of, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +33,6 @@ export class AuthenticationService {
       );
   }
 
-  // public register(user: User): Observable<any> {
-  //   return this.tripDataService.register(user)
-  //     .pipe((authResp: AuthResponse) =>
-  //     this.saveToken(authResp.token));
-  // }
-
   public register(user: User): Observable<any> {
     return this.tripDataService.register(user)
       .pipe(
@@ -55,7 +49,7 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     const token: string = this.getToken();
-    if (token != null) {
+    if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return payload.exp > (Date.now() / 1000);
     } else {
