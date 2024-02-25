@@ -1,14 +1,17 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const User = mongoose.model('users');
+// const User = mongoose.model('users');
+const User = require('../models/users');
 
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
     },
     (username, password, done) => {
         User.findOne({ email: username}, (err, user) => {
-            if (err) { return done(err); }
+            if (err) { 
+                return done(err); 
+            }
             if (!user) {
                 return done(null, false, {
                     message: 'Incorrect username.'
@@ -16,9 +19,10 @@ passport.use(new LocalStrategy({
             }
             if (!user.validPassword(password)) {
                 return done(null, false, {
-                    message: 'Incorrect password'
+                    message: 'Incorrect password.'
                 });
             }
+            return done(null, user); // If this return is removed, the login will not work
         });
     }
 ));

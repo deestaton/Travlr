@@ -16,7 +16,7 @@ export class AuthenticationService {
   ) { }
 
   public getToken(): string {
-    return this.storage.getItem('travlr-token') || '';
+    return String(this.storage.getItem('travlr-token'));
   }
 
   public saveToken(token: string): void {
@@ -49,9 +49,9 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     const token: string = this.getToken();
-    if (token) {
+    if (token != 'null') {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.exp > (Date.now() / 1000);
+      return payload.exp > Date.now() / 1000;
     } else {
       return false;
     }

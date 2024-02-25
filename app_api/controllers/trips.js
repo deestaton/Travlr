@@ -177,5 +177,5 @@ module.exports = {
     tripsFindByCode,
     tripsAddTrip,
     tripsUpdateTrip,
-    tripsDeleteTrip
+    tripsDeleteTrip,
 };

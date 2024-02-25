@@ -49,6 +49,7 @@ export class TripDataService {
     return this.http
       .get<Trip[]>(this.tripUrl)
       .pipe(
+        map(response => response as Trip[]),
         catchError(error => this.handleError(error))
       );
   }
@@ -67,7 +68,7 @@ export class TripDataService {
       );
   }
 
-  public deleteTrip(formData: Trip): Observable<any> {
+  public deleteTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#deleteTrip');
     console.log(formData);
     return this.http
@@ -91,7 +92,7 @@ export class TripDataService {
   }
 
   public makeAuthApiCall(urlPath: string, user: User): Observable<AuthResponse> {
-    const url: string = `${this.apiBaseUrl}/${urlPath}`;
+    const url: string = `${this.apiBaseUrl}${urlPath}`;
     return this.http
       .post<AuthResponse>(url, user)
       .pipe(
