@@ -68,15 +68,15 @@ export class TripDataService {
       );
   }
 
-  public deleteTrip(formData: Trip): Observable<Trip> {
-    console.log('Inside TripDataService#deleteTrip');
-    console.log(formData);
-    return this.http
-      .delete<Trip>(this.tripUrl + formData.code)
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
-  }
+  // public deleteTrip(formData: Trip): Observable<Trip> {
+  //   console.log('Inside TripDataService#deleteTrip');
+  //   console.log(formData);
+  //   return this.http
+  //     .delete<Trip>(this.tripUrl + formData.code)
+  //     .pipe(
+  //       catchError(error => this.handleError(error))
+  //     );
+  // }
 
   private handleError(error: any): Observable<any> {
     console.log('Something has gone wrong', error); // for demo purposes only

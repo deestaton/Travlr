@@ -13,7 +13,17 @@ import { TripDataService } from '../services/trip-data.service';
 })
 
 export class AddTripComponent implements OnInit {
-  addForm: FormGroup;
+  addForm: FormGroup = new FormGroup({
+    _id: new FormGroup({}),
+    code: new FormGroup({}),
+    name: new FormGroup({}),
+    length: new FormGroup({}),
+    start: new FormGroup({}),
+    resort: new FormGroup({}),
+    perPerson: new FormGroup({}),
+    image: new FormGroup({}),
+    description: new FormGroup({}),
+  });
   submitted = false;
 
   constructor(
@@ -33,18 +43,19 @@ export class AddTripComponent implements OnInit {
       perPerson: ['', Validators.required],
       image: ['', Validators.required],
       description: ['', Validators.required],
-    });
+    })
   }
 
   onSubmit() {
     this.submitted = true;
     if(this.addForm.valid) {
       this.tripService.addTrip(this.addForm.value)
-        .subscribe((data) => {
-          console.log(data);
-          this.router.navigate(['']);
+        .subscribe(
+          (data: any) => {
+            console.log(data);
+            this.router.navigate(['list-trips']);
         });
-    };
+    }
   }
     // Get the form short name to access the form fields
   get f() { return this.addForm.controls; }

@@ -36,14 +36,15 @@ export class LoginComponent implements OnInit {
     if (!this.credentials.email || !this.credentials.password) {
       this.formError = 'All fields are required, please try again';
     } else {
-      console.log("Login successful"); // this line executes
-      this.doLogin() // nothing happens when button is clicked
+      console.log("Login successful");
+      this.doLogin()
     }
   }
 
   private doLogin(): void {
-    this.authenticationService.login(this.credentials).subscribe(
-      () => this.router.navigateByUrl('#'),
-      (error: any) => this.formError = error.message);
+    this.authenticationService.login(this.credentials)
+      .subscribe(
+        () => this.router.navigateByUrl('list-trips'),
+        (error: any) => this.formError = error.message);
   }
 }
