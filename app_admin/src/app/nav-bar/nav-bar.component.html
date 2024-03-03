@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">
+            <img src="../../assets/images/logo.png" alt="">
+        </a>
+    
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavAltMarkup" 
+            aria-controls="navbarNavAltMarkup" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="list-trips">Trips</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="d-flex">
+            <a class="nav-link" routerLink="login" *ngIf="!isLoggedIn()">
+                <span class="has-icon-left">Log In</span>
+            </a>
+            
+            <a class="nav-link" (click)="onLogout()" *ngIf="isLoggedIn()">
+                <span class="has-icon-left">Log Out</span>
+            </a>
+        </div>
+    </div>
+</nav>
