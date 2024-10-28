@@ -6,13 +6,16 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
 // import { DeleteTripComponent } from './delete-trip/delete-trip.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { DeleteTripComponent } from './delete-trip/delete-trip.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'add-trip', component: AddTripComponent },
     { path: 'edit-trip', component: EditTripComponent },
-    // { path: 'delete-trip', component: DeleteTripComponent },
+    //{ path: 'delete-trip', component: DeleteTripComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: 'list-trips', component: TripListingComponent },
 ];
 

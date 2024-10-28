@@ -25,6 +25,10 @@
             <a class="nav-link" routerLink="login" *ngIf="!isLoggedIn()">
                 <span class="has-icon-left">Log In</span>
             </a>
+
+            <a class="nav-link" routerLink="register" *ngIf="!isLoggedIn()">
+                <span class="has-icon-left">Register</span>
+            </a>
             
             <a class="nav-link" (click)="onLogout()" *ngIf="isLoggedIn()">
                 <span class="has-icon-left">Log Out</span>

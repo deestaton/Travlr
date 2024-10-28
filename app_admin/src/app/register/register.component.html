@@ -1,0 +1,69 @@
+<div class="row justify-content-center min-vh-100 align-items-center">
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card shadow-lg p-4 border-0">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Register</h2>
+
+                <!-- Alert message for errors -->
+                <div role="alert" *ngIf="formError" class="alert alert-danger text-center">
+                    {{ formError }}
+                </div>
+
+                <form (ngSubmit)="onRegisterSubmit()">
+                    <!-- Username field with icon -->
+                    <div class="form-group mb-3 position-relative">
+                        <label for="email">Username:</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="text" class="form-control" id="username" name="username" 
+                                   placeholder="Create a username">
+                        </div>
+                    </div>
+
+                    <!-- Email field with icon -->
+                    <div class="form-group mb-3 position-relative">
+                        <label for="email">Email Address:</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="Enter email address">
+                        </div>
+                    </div>
+
+                    <!-- Password field with icon -->
+                    <div class="form-group mb-4 position-relative">
+                        <label for="password">Password:</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Password">
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group mb-4 position-relative">
+                        <label for="password">Re-Type Password:</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Confirm ">
+                        </div>
+                    </div>
+
+                    <!-- Submit button with full width -->
+                    <button type="submit" role="button" class="btn btn-primary w-100">
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

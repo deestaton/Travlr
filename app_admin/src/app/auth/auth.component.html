@@ -1,0 +1,6 @@
+<div *ngIf="!isRegistering; else registerForm">
+    <app-login (toggleMode)="toggleRegisterMode()"></app-login>
+</div>
+<ng-template #registerForm>
+    <app-register (toggleMode)="toggleRegisterMode()"></app-register>
+</ng-template>

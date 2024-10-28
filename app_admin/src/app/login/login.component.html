@@ -1,29 +1,49 @@
-<div class="row">
-    <div class="col-12 col-md-8">
-        <h2>Login</h2>
-        <form (ngSubmit)="onLoginSubmit()">
-            <div role="alert" *ngIf="formError" class="alert alert-danger">
-                {{ formError }}
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control"
-                id="email" name="email" placeholder="Enter email address"
-                [(ngModel)]="credentials.email">
-            </div>
+<div class="row justify-content-center min-vh-100 align-items-center">
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card shadow-lg p-4 border-0">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Login</h2>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control"  
-                       id="password" name="password"  
-                       placeholder="e.g. 12+ alphanumerics"  
-                       [(ngModel)]="credentials.password"
-                >
-            </div>
+                <!-- Alert message for errors -->
+                <div role="alert" *ngIf="formError" class="alert alert-danger text-center">
+                    {{ formError }}
+                </div>
 
-            <button type="submit" role="button" class="btn btn-primary">
-                Sign In
-            </button>
-        </form>
+                <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                    <!-- Email field with icon -->
+                    <div class="form-group mb-3 position-relative">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="Enter email address" formControlName="email">
+                        </div>
+                    </div>
+
+                    <!-- Password field with icon -->
+                    <div class="form-group mb-4 position-relative">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="e.g. 12+ alphanumerics" formControlName="password">
+                        </div>
+                        <small class="form-text text-muted">
+                            <!-- TODO: add a form for password reset -->
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </small>
+                    </div>
+
+                    <!-- Submit button with full width -->
+                    <button type="submit" role="button" class="btn btn-primary w-100">
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
