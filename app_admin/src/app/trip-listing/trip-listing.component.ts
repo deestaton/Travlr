@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-trip-listing',
-    standalone: true,
     templateUrl: './trip-listing.component.html',
     styleUrl: './trip-listing.component.css',
     imports: [TripCardComponent, CommonModule],

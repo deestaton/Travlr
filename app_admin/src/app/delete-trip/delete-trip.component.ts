@@ -6,11 +6,10 @@ import { TripDataService } from '../services/trip-data.service';
 
 
 @Component({
-  selector: 'app-delete-trip',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './delete-trip.component.html',
-  styleUrl: './delete-trip.component.css'
+    selector: 'app-delete-trip',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './delete-trip.component.html',
+    styleUrl: './delete-trip.component.css'
 })
 export class DeleteTripComponent {
 

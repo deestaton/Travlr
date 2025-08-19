@@ -8,11 +8,10 @@ import { LoginComponent } from '../login/login.component';
 
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, LoginComponent],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register',
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, LoginComponent],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent {
 

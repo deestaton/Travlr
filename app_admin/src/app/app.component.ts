@@ -11,23 +11,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet, 
-    TripListingComponent, 
-    TripCardComponent,
-    AddTripComponent,
-    EditTripComponent,
-    NavBarComponent,
-    ReactiveFormsModule,
-  ],
-  providers: [
-    TripDataService,
-    FormsModule,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        TripListingComponent,
+        TripCardComponent,
+        AddTripComponent,
+        EditTripComponent,
+        NavBarComponent,
+        ReactiveFormsModule,
+    ],
+    providers: [
+        TripDataService,
+        FormsModule,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'Traveler Admin';

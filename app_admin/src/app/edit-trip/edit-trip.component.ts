@@ -5,11 +5,10 @@ import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angula
 import { TripDataService } from '../services/trip-data.service';
 
 @Component({
-  selector: 'app-edit-trip',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './edit-trip.component.html',
-  styleUrl: './edit-trip.component.css'
+    selector: 'app-edit-trip',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './edit-trip.component.html',
+    styleUrl: './edit-trip.component.css'
 })
 export class EditTripComponent implements OnInit {
   editForm: FormGroup;
